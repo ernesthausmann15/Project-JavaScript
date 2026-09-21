@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- Header section -->
+    <header>
+      <h1 class="website__title">Movie Grab</h1>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#">Find Your Movie</a></li>
+          <li class="nav-item"><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero">
+      <h2 class="hero__title">Find Your Movie</h2>
+      <p class="hero__description">Discover the best movies based on your preferences.</p>
+      <a href="#" class="hero__cta">Get Started</a>
+    </section>
+
+    <!-- Movie search section -->
+    <section class="movie__search">
+      <h2 class="movie__search-title">Search for a Movie</h2>
+      <form class="movie__search-form">
+        <input type="text" placeholder="Enter movie title" class="movie__search-input" />
+        <button type="submit" class="movie__search-button">Search</button>
+      </form>
+    </section>
+
+    <!-- Movie results section -->
+    <section class="movie__results">
+      <h2 class="movie__results-title">Movie Results</h2>
+      <div class="movie__results-container" ">
+        <div class="row movie__result">
+          <ul class="movie__result-list">
+            <li class="movie__result-item">Movie 1
+              <div class="movie__result-details">
+                <p class="movie__result-description">Description of Movie 1</p>
+                <p class="movie__result-rating">Rating: 8.5/10</p>
+              </div>
+              <div class="movie__img--wrapper">
+                <img src="https://via.placeholder.com/150" alt="Movie Poster" />
+              </div>
+            </li>
+          </ul>
+          
+          
+        </div>
+        <!-- Movie results will be dynamically inserted here -->
+      </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class="footer">
+      <p class="footer__text">&copy; 2024 Movie Grab. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
