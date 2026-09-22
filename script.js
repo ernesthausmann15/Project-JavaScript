@@ -158,7 +158,7 @@ modal.addEventListener("click", (e) => {
   }
 });
 
-renderMovies("Avengers"); // Initial render with a default search term
+
 
 const searchForm = document.querySelector("#search__form");
 const searchInput = document.querySelector("#search__input");
