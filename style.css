@@ -468,10 +468,25 @@ header > * {
   font-size: clamp(1.5rem, 4vw, 2.4rem);
 }
 
+.modal__section-heading {
+  grid-column: 2;
+  margin: 0.25rem 2.5rem 0 0;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .modal__content p {
   margin: 0.3rem 0;
   color: #c4ccda;
   line-height: 1.5;
+}
+
+.modal__field-label {
+  color: #ffffff;
+  font-weight: 800;
 }
 
 #modal__plot {
@@ -537,6 +552,10 @@ header > * {
 
   .modal__content {
     display: block;
+  }
+
+  .modal__section-heading {
+    margin: 0.5rem 0 0;
   }
 
   #modal__poster {

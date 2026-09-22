@@ -105,26 +105,44 @@ async function openMovieModal(imdbID) {
         : "https://dummyimage.com/300x450/ccc/999&text=No+Image";
 
     document.querySelector("#modal__title").textContent = movie.Title;
-    document.querySelector("#modal__year").textContent = movie.Year;
-    document.querySelector("#modal__plot").textContent = movie.Plot;
-    document.querySelector("#modal__actors").textContent = movie.Actors;
-    document.querySelector("#modal__director").textContent = movie.Director;
-    document.querySelector("#modal__genre").textContent = movie.Genre;
-    document.querySelector("#modal__runtime").textContent = movie.Runtime;
-    document.querySelector("#modal__released").textContent = movie.Released;
-    document.querySelector("#modal__awards").textContent = movie.Awards;
-    document.querySelector("#modal__imdbVotes").textContent = movie.imdbVotes;
-    document.querySelector("#modal__imdbID").textContent = movie.imdbID;
-    document.querySelector("#modal__type").textContent = movie.Type;
-    document.querySelector("#modal__dvd").textContent = movie.DVD;
-    document.querySelector("#modal__boxOffice").textContent = movie.BoxOffice;
-    document.querySelector("#modal__production").textContent = movie.Production;
-    document.querySelector("#modal__website").textContent = movie.Website;
+    setModalField("modal__year", "Year", movie.Year);
+    setModalField("modal__released", "Released", movie.Released);
+    setModalField("modal__runtime", "Runtime", movie.Runtime);
+    setModalField("modal__genre", "Genre", movie.Genre);
+    setModalField("modal__director", "Director", movie.Director);
+    setModalField("modal__writer", "Writer", movie.Writer);
+    setModalField("modal__actors", "Actors", movie.Actors);
+    setModalField("modal__plot", "Plot", movie.Plot);
+    setModalField("modal__language", "Language", movie.Language);
+    setModalField("modal__country", "Country", movie.Country);
+    setModalField("modal__awards", "Awards", movie.Awards);
+    setModalField("modal__ratings", "Ratings", movie.Ratings);
+    setModalField("modal__metascore", "Metascore", movie.Metascore);
+    setModalField("modal__imdbRating", "IMDb Rating", movie.imdbRating);
+    setModalField("modal__imdbVotes", "IMDb Votes", movie.imdbVotes);
+    setModalField("modal__imdbID", "IMDb ID", movie.imdbID);
+    setModalField("modal__type", "Type", movie.Type);
+    setModalField("modal__dvd", "DVD", movie.DVD);
+    setModalField("modal__boxOffice", "Box Office", movie.BoxOffice);
+    setModalField("modal__production", "Production", movie.Production);
+    setModalField("modal__website", "Website", movie.Website);
 
     document.querySelector("#movie__modal").classList.add("active");
   } catch (error) {
     console.error("Error fetching movie details:", error);
   }
+}
+
+function setModalField(elementId, label, value) {
+  const element = document.querySelector(`#${elementId}`);
+  const labelElement = document.createElement("strong");
+
+  labelElement.className = "modal__field-label";
+  labelElement.textContent = `${label}:`;
+  element.replaceChildren(
+    labelElement,
+    document.createTextNode(` ${value || "N/A"}`),
+  );
 }
 
 function filterMovies(event) {
@@ -157,8 +175,6 @@ modal.addEventListener("click", (e) => {
     modal.classList.remove("active");
   }
 });
-
-
 
 const searchForm = document.querySelector("#search__form");
 const searchInput = document.querySelector("#search__input");
