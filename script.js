@@ -1,4 +1,9 @@
 let movieData = [];
+const MOVIE_LOADING_DELAY = 2000;
+
+function wait(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
 
 const themeToggle = document.querySelector("#theme-toggle");
 
@@ -36,13 +41,16 @@ async function renderMovies(SearchTerm) {
   movieContainer.innerHTML = ""; // Clear previous results
 
   movieContainer.innerHTML =
-    '<div class="movies__loading"><i class="fas fa-spinner fa-spin"></i> Loading movies...</div>';
+    '<div class="movies__loading" role="status"><span class="loading-spinner" aria-hidden="true"></span><span>Loading movies...</span></div>';
+
+  const loadingDelay = wait(MOVIE_LOADING_DELAY);
 
   try {
     const response = await fetch(
       `https://www.omdbapi.com/?s=${SearchTerm}&apikey=21079115`,
     );
     const data = await response.json();
+    await loadingDelay;
 
     movieContainer.innerHTML = ""; // Clear previous results
 
@@ -55,6 +63,7 @@ async function renderMovies(SearchTerm) {
       movieContainer.innerHTML = "<p>No movies found.</p>";
     }
   } catch (error) {
+    await loadingDelay;
     console.error("Error fetching movies:", error);
     movieContainer.innerHTML = "<p>Error fetching movies.</p>";
   }
@@ -121,15 +130,19 @@ async function openMovieModal(imdbID) {
 function filterMovies(event) {
   const filterValue = event.target.value;
 
-  let sortedMovies = [...movieData]; // Create a copy of the movieData array
+  const sortedMovies = [...movieData];
 
   if (filterValue === "NEWEST") {
-    movieData.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
+    sortedMovies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
   } else if (filterValue === "OLDEST") {
-    movieData.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+    sortedMovies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+  } else if (filterValue === "A_TO_Z") {
+    sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title));
+  } else if (filterValue === "Z_TO_A") {
+    sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title));
   }
 
-  displayMovies(movieData);
+  displayMovies(sortedMovies);
 }
 
 const modal = document.querySelector("#movie__modal");

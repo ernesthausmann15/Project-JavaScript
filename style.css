@@ -374,6 +374,29 @@ header > * {
   text-align: center;
 }
 
+.movies__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 12rem;
+}
+
+.loading-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 3px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: movie-spinner 800ms linear infinite;
+}
+
+@keyframes movie-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Modal */
 #movie__modal {
   position: fixed;
