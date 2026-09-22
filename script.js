@@ -1,5 +1,36 @@
 let movieData = [];
 
+const themeToggle = document.querySelector("#theme-toggle");
+
+function setTheme(isDark) {
+  document.body.classList.toggle("dark-mode", isDark);
+  themeToggle.setAttribute("aria-pressed", String(isDark));
+  themeToggle.setAttribute(
+    "aria-label",
+    isDark ? "Switch to light mode" : "Switch to dark mode",
+  );
+  themeToggle.querySelector(".theme-toggle__text").textContent = isDark
+    ? "Light mode"
+    : "Dark mode";
+  themeToggle.querySelector("span").textContent = isDark ? "☀" : "☾";
+}
+
+setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+themeToggle.addEventListener("click", () => {
+  setTheme(!document.body.classList.contains("dark-mode"));
+});
+
+window.addEventListener("pointermove", (event) => {
+  document.documentElement.style.setProperty(
+    "--pointer-x",
+    `${event.clientX}px`,
+  );
+  document.documentElement.style.setProperty(
+    "--pointer-y",
+    `${event.clientY}px`,
+  );
+});
+
 async function renderMovies(SearchTerm) {
   const movieContainer = document.querySelector("#movie__list");
   movieContainer.innerHTML = ""; // Clear previous results
