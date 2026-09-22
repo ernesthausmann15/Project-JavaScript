@@ -13,6 +13,7 @@
   --shadow: 0 18px 45px rgba(31, 41, 55, 0.12);
   --pointer-x: 50vw;
   --pointer-y: 20vh;
+  --header-image-opacity: 0.16;
   color-scheme: light;
   font-family:
     Inter,
@@ -35,6 +36,7 @@ body.dark-mode {
   --text-muted: #e2e8f0;
   --border: rgba(148, 163, 184, 0.2);
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.38);
+  --header-image-opacity: 0.28;
   color-scheme: dark;
 }
 
@@ -119,10 +121,36 @@ header,
 }
 
 header {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
   padding: 1.25rem 0;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  isolation: isolate;
+}
+
+header::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  background-image:
+    linear-gradient(90deg, rgba(8, 11, 18, 0.82), rgba(8, 11, 18, 0.42)),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80");
+  background-position: center;
+  background-size: cover;
+  opacity: var(--header-image-opacity);
+  pointer-events: none;
+}
+
+header > * {
+  position: relative;
+  z-index: 1;
 }
 
 .website__title {
