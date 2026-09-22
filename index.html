@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-
     <!-- Header section -->
     <header>
       <h1 class="website__title">Movie Grab</h1>
@@ -24,15 +23,22 @@
     <!-- Hero section -->
     <section class="hero">
       <h2 class="hero__title">Find Your Movie</h2>
-      <p class="hero__description">Discover the best movies based on your preferences.</p>
+      <p class="hero__description">
+        Discover the best movies based on your preferences.
+      </p>
       <a href="#" class="hero__cta">Get Started</a>
     </section>
 
     <!-- Movie search section -->
     <section class="movie__search">
       <h2 class="movie__search-title">Search for a Movie</h2>
-      <form class="movie__search-form">
-        <input type="text" placeholder="Enter movie title" class="movie__search-input" />
+      <form id="search__form" class="movie__search-form">
+        <input
+          id="search__input"
+          type="text"
+          placeholder="Enter movie title"
+          class="movie__search-input"
+        />
         <button type="submit" class="movie__search-button">Search</button>
       </form>
     </section>
@@ -40,23 +46,47 @@
     <!-- Movie results section -->
     <section class="movie__results">
       <h2 class="movie__results-title">Movie Results</h2>
-      <div class="movie__results-container" ">
+
+      <div class="filter__wrapper">
+        <select id="filter" onchange="filterMovies(event)">
+          <option value="" disabled selected>Sort by...</option>
+          <option value="NEWEST">Release Year, New to Old</option>
+          <option value="OLDEST">Release Year, Old to New</option>
+        </select>
+      </div>
+
+      <div class="movie__results-container">
         <div class="row movie__result">
-          <ul class="movie__result-list">
-            <li class="movie__result-item">Movie 1
-              <div class="movie__result-details">
-                <p class="movie__result-description">Description of Movie 1</p>
-                <p class="movie__result-rating">Rating: 8.5/10</p>
-              </div>
-              <div class="movie__img--wrapper">
-                <img src="https://via.placeholder.com/150" alt="Movie Poster" />
-              </div>
-            </li>
-          </ul>
-          
-          
+          <ul class="movie__result-list" id="movie__list"></ul>
         </div>
-        <!-- Movie results will be dynamically inserted here -->
+      </div>
+      <div id="movie__modal" class="modal">
+        <div class="modal__content">
+          <button class="modal__close">&times;</button>
+          <img id="modal__poster" src="" alt="Movie Poster" />
+          <h2 id="modal__title"></h2>
+          <p id="modal__year"></p>
+          <p id="modal__released"></p>
+          <p id="modal__runtime"></p>
+          <p id="modal__genre"></p>
+          <p id="modal__director"></p>
+          <p id="modal__writer"></p>
+          <p id="modal__actors"></p>
+          <p id="modal__plot"></p>
+          <p id="modal__language"></p>
+          <p id="modal__country"></p>
+          <p id="modal__awards"></p>
+          <p id="modal__ratings"></p>
+          <p id="modal__metascore"></p>
+          <p id="modal__imdbRating"></p>
+          <p id="modal__imdbVotes"></p>
+          <p id="modal__imdbID"></p>
+          <p id="modal__type"></p>
+          <p id="modal__dvd"></p>
+          <p id="modal__boxOffice"></p>
+          <p id="modal__production"></p>
+          <p id="modal__website"></p>
+        </div>
       </div>
     </section>
 
